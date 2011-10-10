@@ -37,14 +37,14 @@ void run(long literals[], byte instructions[]) {
         int i;
         
         // Pop all args from the stack and compile as an array
-        for (i = 0; i < argc; ++i) argv[0] = STACK_POP();
+        for (i = 0; i < argc; ++i) argv[i] = STACK_POP();
         Object *receiver = STACK_POP();
         
         Object *result = call(receiver, message, argv, argc);
         STACK_PUSH(result);
         
         // Release objects
-        for (i = 0; i < argc; ++i) release(argv[0]);
+        for (i = 0; i < argc; ++i) release(argv[i]);
         release(receiver);
         
         break;
