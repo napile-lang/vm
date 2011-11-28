@@ -51,7 +51,7 @@ void run(long literals[], byte instructions[]) {
       }
       case PUSH_NUMBER:
         ip++; // advance to operand (literal index)
-        STACK_PUSH(Number_new((long)literals[*ip]));
+        STACK_PUSH(Number_new((int)literals[*ip]));
         break;
         
       case PUSH_STRING:
