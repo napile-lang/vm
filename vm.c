@@ -99,8 +99,8 @@ void run(long literals[], byte instructions[]) {
       }
       case JUMP_UNLESS: {
         ip++; // advance to operand (offset)
-        long offset = *ip;
-        void *test = STACK_POP();
+        byte offset = *ip;
+        Object *test = STACK_POP();
         
         if (!Object_is_true(test)) ip += offset;
         
