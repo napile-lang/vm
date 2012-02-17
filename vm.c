@@ -12,7 +12,7 @@
 #define STACK_POP()    (*sp--)
 
 
-void run(long literals[], byte instructions[]) {
+void run(void *literals[], byte instructions[]) {
   byte    *ip = instructions;      // instruction pointer
   
   Object  *stack[STACK_MAX];       // the famous stack
@@ -51,7 +51,7 @@ void run(long literals[], byte instructions[]) {
       }
       case PUSH_NUMBER:
         ip++; // advance to operand (literal index)
-        STACK_PUSH(Number_new((int)literals[*ip]));
+        STACK_PUSH(Number_new((long)literals[*ip]));
         break;
         
       case PUSH_STRING:
@@ -133,11 +133,11 @@ int main (int argc, char const *argv[]) {
   // end
   
   // long can store a pointer (a numbers too).
-  long literals[] = {
-    /* [0] */ (long) "the answer is:",
-    /* [1] */ (long) "print",
-    /* [2] */ (long) 30,
-    /* [3] */ (long) 2
+  void *literals[] = {
+    /* [0] */ (void *) "the answer is:",
+    /* [1] */ (void *) "print",
+    /* [2] */ (void *) 30,
+    /* [3] */ (void *) 2
   };
   
   // locals
