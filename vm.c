@@ -108,6 +108,14 @@ void run(void *literals[], byte instructions[]) {
         
         break;
       }
+      case JUMP: {
+        ip++; // number of bytes to more forward
+        byte offset = *ip;
+        
+        ip += offset;
+        
+        break;
+      }
       case RETURN:
         goto cleanup;
         break;
