@@ -48,4 +48,4 @@ c = ERB.new(<<-'ERB').result(binding)
 #define INSTRUCTIONS { <%= instructions.join(', ') %> }
 ERB
 
-File.write("bytecode.h", c)
+File.open("bytecode.h", "w") { |f| f << c }
